@@ -1,5 +1,5 @@
 import { useState } from "react";
-import SearchBar from "../components/Searchbar";
+import SearchBox from "../components/Searchbar";
 
 
 
@@ -16,7 +16,7 @@ function BookList() {
 
 function Catalog() {
   return (
-    <SearchBar />
+    <SearchBox />
   )
 }
 export default Catalog;
