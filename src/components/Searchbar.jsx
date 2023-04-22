@@ -1,13 +1,19 @@
-import { Image, Card, VStack, Text, CardHeader, CardBody, CardFooter, SimpleGrid, Box, Input, } from '@chakra-ui/react'
+import { Button, ButtonGroup, Image, Card, VStack, Text, CardHeader, CardBody, CardFooter, SimpleGrid, Box, Input, } from '@chakra-ui/react'
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 function SearchBox() {
   const [APIData, setAPIData] = useState([]);
   const [query, setQuery] = useState("");
+  const [catalog, setCatalog] = useState(JSON.parse(localStorage.getItem("catalog")) || []);
   useEffect(() => {
     console.log(APIData)
     axios.get("https://openlibrary.org/search.json", { params: { "q": query, "fields": "docs,title,author_name,key" } }).then((response) => { setAPIData(response.data.docs) })
   }, [query])
+
+  useEffect(() => {
+    console.log("catalog")
+    localStorage.setItem("catalog", JSON.stringify(catalog))
+  }, [catalog])
   return (
     <Box>
       <VStack spacing={8}>
@@ -23,6 +29,13 @@ function SearchBox() {
                 <Text>{item.title}</Text>
                 <Text>{(item.author_name || []).join(", ")}</Text>
               </CardBody>
+              <CardFooter>
+                <ButtonGroup spacing={2}>
+                  <Button variant="solid" colorScheme="green" onClick={() => setCatalog([...catalog, item])}>
+                    Add to Catalog
+                  </Button>
+                </ButtonGroup>
+              </CardFooter>
             </Card>
           )
           )}
