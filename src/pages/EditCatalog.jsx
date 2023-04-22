@@ -15,7 +15,7 @@ function BookList() {
   )
 }
 
-function Catalog() {
+function EditCatalog() {
   return (
     <div>
       <Heading>Your Catalog</Heading>

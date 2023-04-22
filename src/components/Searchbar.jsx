@@ -31,7 +31,7 @@ function SearchBox() {
               </CardBody>
               <CardFooter>
                 <ButtonGroup spacing={2}>
-                  <Button variant="solid" colorScheme="green" onClick={() => setCatalog([...catalog, item])}>
+                  <Button variant="solid" colorScheme={item in catalog ? "red" : "green"} onClick={() => setCatalog([...catalog, item])}>
                     Add to Catalog
                   </Button>
                 </ButtonGroup>
