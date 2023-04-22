@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Heading } from "@chakra-ui/react";
 import SearchBox from "../components/Searchbar";
 
 
@@ -16,7 +17,10 @@ function BookList() {
 
 function Catalog() {
   return (
-    <SearchBox />
+    <div>
+      <Heading>Your Catalog</Heading>
+      <SearchBox />
+    </div>
   )
 }
 export default Catalog;
