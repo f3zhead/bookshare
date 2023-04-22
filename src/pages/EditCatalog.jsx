@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Heading } from "@chakra-ui/react";
 import SearchBox from "../components/Searchbar";
 
@@ -12,4 +11,4 @@ function EditCatalog() {
     </div>
   )
 }
-export default Catalog;
+export default EditCatalog;
