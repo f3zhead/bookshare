@@ -1,4 +1,4 @@
-import { Input } from '@chakra-ui/react'
+import { Box, Input, OrderedList, ListItem } from '@chakra-ui/react'
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 function SearchBox() {
@@ -8,22 +8,19 @@ function SearchBox() {
     axios.get("https://openlibrary.org/search.json", { params: { "q": query, "fields": "docs,title" } }).then((response) => { setAPIData(response.data.docs) })
   }, [query])
   return (
-    <div>
+    <Box>
       <Input
         placeholder="Search for a book"
         type="search"
         onChange={(event) => setQuery(event.target.value)} />
-      <ul>
+      <OrderedList>
         {APIData.map(item => (
-          <li key={item.key}>{JSON.stringify(item.title)}</li>
+          <ListItem key={item.key}>{JSON.stringify(item.title)}</ListItem>
         )
         )}
-      </ul>
-    </div>
+      </OrderedList>
+    </Box>
   )
-}
-function SearchBar() {
-
 }
 
 export default SearchBox;
