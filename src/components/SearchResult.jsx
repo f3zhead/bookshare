@@ -26,7 +26,8 @@ function SearchResult({ book, catalog, setCatalog }) {
           <Button variant="solid"
             colorScheme={inCatalog ? "red" : "blue"}
             // smth weird goin on here
-            onclick={() => (setInCatalog(!inCatalog))}>
+            onClick={() => (setInCatalog(!inCatalog))}>
+            
             Add to Catalog
           </Button>
         </ButtonGroup>
