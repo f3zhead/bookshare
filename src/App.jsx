@@ -6,12 +6,14 @@ import { ChakraProvider } from "@chakra-ui/react";
 import EditCatalog from "./pages/EditCatalog"
 import Catalog from "./pages/Catalog"
 import JoinPeer from "./pages/JoinPeer"
+import Navbar from "./components/Navbar"
 import './App.css'
 
 function App() {
   return (
     <ChakraProvider>
       <BrowserRouter>
+        <Navbar />
         <Routes>
           <Route exact path="/" element={<EditCatalog />} />
           <Route exact path="/catalog" element={<Catalog />} />
