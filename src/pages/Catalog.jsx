@@ -18,7 +18,7 @@ function Catalog() {
       <VStack spacing={8}>
         <SimpleGrid columns={5} spacing={7}>
           {catalog.map(book => (
-            <Card>
+            <Card key={book.key}>
               <CardBody>
                 <Image src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Slaughterhouse-Five_%28first_edition%29_-_Kurt_Vonnegut.jpg/220px-Slaughterhouse-Five_%28first_edition%29_-_Kurt_Vonnegut.jpg" />
                 <Text>{book.title}</Text>

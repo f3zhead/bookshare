@@ -1,31 +1,37 @@
-import { Button, ButtonGroup, Image, Card, VStack, Text, CardHeader, CardBody, CardFooter, SimpleGrid, Box, Input, } from '@chakra-ui/react'
-import { useState, useEffect } from 'react';
-// import {form} from <html></html>
+import { Button, Input, Box, Heading } from '@chakra-ui/react'
+import { Peer } from 'peerjs';
+import { useState } from 'react';
 
-function JoinPeer() {
-    //console.log("hi")
-    return(
-        <form onsubmit="myfunction()">
-            Enter ID: <Input type="text" name="fname"></Input>
-            <input type="submit" value="Submit"></input>
-        </form>
-    )
-    // return (
-    // <form>
-    //     Enter name: <input type="text" name="fname">
-    //     <input type="submit" value="Submit">
-    // </form>
-    // )
-// return(
-//     // <Input
-//     //     placeholder="Enter ID"
-//     //     type="search"
-//     //     onChange={(event) => console.log(event)} />
-//     <form action="/action_page.php" onsubmit="myFunction()">
-//     Enter name: <input type="text" name="fname">
-//     <input type="submit" value="Submit">
-//     </form>
-// )
+export default function JoinPeer() {
+  const [peerObject, setPeerObject] = useState(new Peer());
+  const [peerData, setPeerData] = useState([]);
+  const [peerID, setPeerID] = useState("");
+  var catalog = JSON.parse(localStorage.getItem("catalog"))
+  console.log("catalog", catalog)
+  peerObject.on('connection', function(conn) {
+    conn.on('open', function(data) {
+      setPeerData([...peerData, data])
+    })
+    console.log("MOOOOOOOOOOOOOOo")
+    console.log(peerData)
+  })
+  return (
+    <Box>
+      <Heading>Enter peer ID</Heading>
+      <Box>Your id: {peerObject.id}</Box>
+      <Input type="text" name="peerId"
+        onChange={(event) => setPeerID(event.target.value)} />
+      <Button colorScheme="blue" onClick={() => send(peerObject, peerID, JSON.stringify(catalog))}>Submit</Button>
+    </Box>
+  )
 }
 
-export default JoinPeer;
+function send(me, destinationId, data) {
+  // data should be a string already
+  const conn = me.connect(destinationId)
+  conn.on('open', function() {
+    conn.send(data)
+  })
+}
+
+

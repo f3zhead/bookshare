@@ -26,7 +26,7 @@ function SearchBox() {
         <SimpleGrid columns={5} spacing={7}>
           {
             APIData.map(book => (
-              <SearchResult book={book} catalog={catalog} setCatalog={setCatalog} />
+              <SearchResult key={book.key} book={book} catalog={catalog} setCatalog={setCatalog} />
             )
             )}
         </SimpleGrid>
